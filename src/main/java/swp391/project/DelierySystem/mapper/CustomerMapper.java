@@ -1,11 +1,11 @@
 package swp391.project.DelierySystem.mapper;
 
-import swp391.project.DelierySystem.dto.Customersdto;
+import swp391.project.DelierySystem.dto.CustomersDTO;
 import swp391.project.DelierySystem.entity.Customers;
 
 public class CustomerMapper {
-        public static Customersdto mapToCustomersdto(Customers customers) {
-            return new Customersdto(
+        public static CustomersDTO mapToCustomersdto(Customers customers) {
+            return new CustomersDTO(
                 customers.getId(),
                 customers.getFullName(),
                 customers.getEmail(),
@@ -19,7 +19,7 @@ public class CustomerMapper {
                 customers.getRoleId()
             );             
         }
-        public static Customers mapToCustomer(Customersdto customersdto) {
+        public static Customers mapToCustomer(CustomersDTO customersdto) {
             return new Customers(
                 customersdto.getId(),
                 customersdto.getFullName(),

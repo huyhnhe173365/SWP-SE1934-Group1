@@ -1,6 +1,6 @@
 package swp391.project.DelierySystem.controller;
 
-import swp391.project.DelierySystem.dto.Customersdto;
+import swp391.project.DelierySystem.dto.CustomersDTO;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,26 +24,26 @@ public class CustomersController {
 
     //Build your create APIs here
     @PostMapping
-    private ResponseEntity<Customersdto> createCustomers(@RequestBody Customersdto customersdto) {
-        Customersdto savedCustomers = customersService.createCustomers(customersdto);
+    private ResponseEntity<CustomersDTO> createCustomers(@RequestBody CustomersDTO customersdto) {
+        CustomersDTO savedCustomers = customersService.createCustomers(customersdto);
         return new ResponseEntity<>(savedCustomers, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Customersdto> getCustomersById(@PathVariable("id") Long CustomersId) {
-        Customersdto customersdto = customersService.getCustomersById(CustomersId);
+    public ResponseEntity<CustomersDTO> getCustomersById(@PathVariable("id") Long CustomersId) {
+        CustomersDTO customersdto = customersService.getCustomersById(CustomersId);
         return ResponseEntity.ok(customersdto);
     }
 
     @GetMapping
-    public ResponseEntity<List<Customersdto>> getAllCustomers() {
-        List<Customersdto> customers = customersService.getAllCustomers();
+    public ResponseEntity<List<CustomersDTO>> getAllCustomers() {
+        List<CustomersDTO> customers = customersService.getAllCustomers();
         return ResponseEntity.ok(customers);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Customersdto> updateCustomers(@PathVariable("id") Long CustomersId, @RequestBody Customersdto updatedCustomers) {
-        Customersdto customersdto = customersService.updateCustomers(CustomersId, updatedCustomers);
+    public ResponseEntity<CustomersDTO> updateCustomers(@PathVariable("id") Long CustomersId, @RequestBody CustomersDTO updatedCustomers) {
+        CustomersDTO customersdto = customersService.updateCustomers(CustomersId, updatedCustomers);
         return ResponseEntity.ok(customersdto);
     }
 

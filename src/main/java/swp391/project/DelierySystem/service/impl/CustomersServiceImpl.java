@@ -3,7 +3,7 @@ package swp391.project.DelierySystem.service.impl;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-import swp391.project.DelierySystem.dto.Customersdto;
+import swp391.project.DelierySystem.dto.CustomersDTO;
 import swp391.project.DelierySystem.entity.Customers;
 import swp391.project.DelierySystem.mapper.CustomerMapper;
 import swp391.project.DelierySystem.repository.CustomerRepository;
@@ -18,26 +18,26 @@ public class CustomersServiceImpl implements CustomersService{
 
     private CustomerRepository customerRepository;
     @Override
-    public Customersdto createCustomers(Customersdto customersdto) {
+    public CustomersDTO createCustomers(CustomersDTO customersdto) {
         Customers customers = CustomerMapper.mapToCustomer(customersdto);
         Customers savedCustomers = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersdto(savedCustomers); 
     }
     @Override
-    public Customersdto getCustomersById(Long CustomersId) {
+    public CustomersDTO getCustomersById(Long CustomersId) {
         Customers customers = customerRepository.findById(CustomersId)
             .orElseThrow(() -> new ResourceNotFoundException("Customers not found with id: " + CustomersId));
         return CustomerMapper.mapToCustomersdto(customers);        
     }
     @Override
-    public List<Customersdto> getAllCustomers() {
+    public List<CustomersDTO> getAllCustomers() {
         List<Customers> customers = customerRepository.findAll();
         return customers.stream()
             .map(customer -> CustomerMapper.mapToCustomersdto(customer))
             .collect(Collectors.toList());
     }
     @Override
-    public Customersdto updateCustomers(Long CustomersId, Customersdto updatedCustomers) {
+    public CustomersDTO updateCustomers(Long CustomersId, CustomersDTO updatedCustomers) {
         Customers customers = customerRepository.findById(CustomersId)
             .orElseThrow(() -> new ResourceNotFoundException("Customers not found with id: " + CustomersId));
             customers.setFullName(updatedCustomers.getFullName());

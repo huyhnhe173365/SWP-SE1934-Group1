@@ -1,16 +1,16 @@
 package swp391.project.DelierySystem.service;
 
-import swp391.project.DelierySystem.dto.Customersdto;
+import swp391.project.DelierySystem.dto.CustomersDTO;
 import java.util.List;
 
 public interface CustomersService {
-    Customersdto createCustomers(Customersdto customersdto);
+    CustomersDTO createCustomers(CustomersDTO customersdto);
 
-    Customersdto getCustomersById(Long CustomersId);
+    CustomersDTO getCustomersById(Long CustomersId);
 
-    List<Customersdto> getAllCustomers();
+    List<CustomersDTO> getAllCustomers();
 
-    Customersdto updateCustomers(Long CustomersId, Customersdto updatedCustomers);
+    CustomersDTO updateCustomers(Long CustomersId, CustomersDTO updatedCustomers);
 
     void deleteCustomers(Long CustomersId);
 }
