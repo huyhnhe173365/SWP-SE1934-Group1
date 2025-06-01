@@ -1,6 +1,11 @@
 CREATE DATABASE IF NOT EXISTS CustomerDB;
 USE CustomerDB;
 
+CREATE TABLE Roles (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    RoleName VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE Customers (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     FullName VARCHAR(50) NOT NULL,
@@ -15,10 +20,6 @@ CREATE TABLE Customers (
     RoleID INT NOT NULL,
     
     CONSTRAINT fk_customer_role FOREIGN KEY (RoleID) REFERENCES Roles(ID)
-);
-CREATE TABLE Roles (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    RoleName VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE EmailConfirmed (
@@ -35,7 +36,7 @@ CREATE TABLE Labels (
     LabelName VARCHAR(100) NOT NULL UNIQUE,
     Description TEXT,
     ContactInfo VARCHAR(250),
-    Status ENUM('Active', 'Inactive') DEFAULT 'Active'
+    Status VARCHAR(100)
 );
 
 CREATE TABLE Storages (
@@ -45,22 +46,18 @@ CREATE TABLE Storages (
     Capacity INT,
     PricePerMonth DECIMAL(10, 2),
     ContactInfo VARCHAR(250),
-    Status ENUM('Available', 'Occupied', 'Maintenance') DEFAULT 'Available'
+    Status VARCHAR(100)
 );
 
 CREATE TABLE Vouchers (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Code VARCHAR(50) NOT NULL UNIQUE,
     Description TEXT,
-    DiscountType ENUM('Percentage', 'Fixed') NOT NULL,
-    DiscountValue DECIMAL(10, 2) NOT NULL,
-    MinOrderAmount DECIMAL(10, 2),
-    MaxDiscountAmount DECIMAL(10, 2),
+    Discount FLOAT(53) NOT NULL,
+    Quantity INT(10) NOT NULL,
     StartDate DATE NOT NULL,
     EndDate DATE NOT NULL,
-    UsageLimit INT, -- số lượt sử dụng tối đa
-    UsageCount INT DEFAULT 0, -- số lượt đã sử dụng
-    Status ENUM('Active', 'Expired', 'Disabled') DEFAULT 'Active'
+    Status VARCHAR(100)
 );
 
 CREATE TABLE CustomerVouchers (
@@ -80,10 +77,9 @@ CREATE TABLE Staff (
     FullName VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE,
     PhoneNumber VARCHAR(20),
-    Role VARCHAR(50),
     AssignedLabelID INT,
     AssignedStorageID INT,
-    Status ENUM('Active', 'Inactive') DEFAULT 'Active',
+    Status VARCHAR(100),
     
     CONSTRAINT fk_staff_label FOREIGN KEY (AssignedLabelID) REFERENCES Labels(ID),
     CONSTRAINT fk_staff_storage FOREIGN KEY (AssignedStorageID) REFERENCES Storages(ID),
@@ -97,6 +93,7 @@ CREATE TABLE Staff (
 CREATE TABLE OrderRequests (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     CustomerID INT NOT NULL,
+    TrackingNumber VARCHAR(100) UNIQUE,
     LabelID INT,
     SurveyStaffID INT,
     SurveyDate DATE,
@@ -107,43 +104,26 @@ CREATE TABLE OrderRequests (
     PickUpDate DATE,
     ExpectedDeliveryTime DATETIME,
     TotalAmount DECIMAL(10, 2),
+    Status VARCHAR(100) NOT NULL,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
     CONSTRAINT fk_label FOREIGN KEY (LabelID) REFERENCES Labels(ID),
     CONSTRAINT fk_storage FOREIGN KEY (StorageID) REFERENCES Storages(ID),
-CONSTRAINT fk_survey_staff FOREIGN KEY (SurveyStaffID) REFERENCES Staff(ID)
+	CONSTRAINT fk_survey_staff FOREIGN KEY (SurveyStaffID) REFERENCES Staff(ID)
 );
 
 CREATE TABLE OrderTracking (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     OrderID INT NOT NULL,
-    Status ENUM('Pending', 'Processing', 'Picked Up', 'In Transit', 'Delivered', 'Cancelled', 'Returned') NOT NULL,
+    TrackingNumber VARCHAR(100) NOT NULL,
+    Status VARCHAR(100) NOT NULL,
     Location VARCHAR(250),
     Notes TEXT,
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     
     CONSTRAINT fk_tracking_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
-);
-
-CREATE TABLE Deliveries (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    CustomerID INT NOT NULL,
-    OrderID INT NOT NULL,
-    LabelID INT NOT NULL,
-    DepartureStorageID INT NOT NULL,
-    ArrivalAddress VARCHAR(250) NOT NULL,
-    DepartureTime DATETIME NOT NULL,
-    ArrivalTime DATETIME,
-    TransportMode ENUM('Truck', 'Van', 'Bike', 'Air', 'Ship') DEFAULT 'Truck',
-    DurationMinutes INT,
-    Price DECIMAL(10,2) NOT NULL,
-    Status ENUM('Booked', 'In Transit', 'Completed', 'Cancelled') DEFAULT 'Booked',
-    TrackingCode VARCHAR(100) UNIQUE,
-
-    CONSTRAINT fk_delivery_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
-    CONSTRAINT fk_delivery_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID),
-    CONSTRAINT fk_delivery_label FOREIGN KEY (LabelID) REFERENCES Labels(ID),
-    CONSTRAINT fk_departure_storage FOREIGN KEY (DepartureStorageID) REFERENCES Storages(ID)
 );
 
 CREATE TABLE Payments (
@@ -153,7 +133,7 @@ CREATE TABLE Payments (
     TotalAmount DECIMAL(10, 2) NOT NULL,
     PaymentDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     PaymentMethod ENUM('Cash', 'Credit Card', 'Bank Transfer', 'E-Wallet') NOT NULL,
-    Status ENUM('Pending', 'Completed', 'Failed') DEFAULT 'Completed',
+    Status VARCHAR(100) NOT NULL,
 
     CONSTRAINT fk_payment_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
     CONSTRAINT fk_payment_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
@@ -166,11 +146,55 @@ CREATE TABLE Issues (
     IncidentDate DATETIME DEFAULT CURRENT_TIMESTAMP,
     Description TEXT,
     Resolution TEXT,
-    Status ENUM('Open', 'In Progress', 'Resolved', 'Closed') DEFAULT 'Open',
+    Status VARCHAR(100) NOT NULL,
     
     CONSTRAINT fk_issue_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID),
     CONSTRAINT fk_issue_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID)
 );
+
+CREATE TABLE LabelCalendar (
+    ID INT AUTO_INCREMENT PRIMARY KEY,  
+    ScheduleDate DATETIME NOT NULL,            -- Ngày vận chuyển
+    Price DECIMAL(18,4) NOT NULL,              -- Giá chuyến vận chuyển
+    LabelID INT NOT NULL,                      -- Công ty vận chuyển
+    OrderID INT,                               -- Mã đơn hàng nếu đã đặt
+    IsBooked BOOLEAN NOT NULL DEFAULT FALSE,   -- Đã được đặt chưa
+
+    CONSTRAINT fk_calendar_label FOREIGN KEY (LabelID) REFERENCES Labels(ID),
+    CONSTRAINT fk_calendar_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
+);
+
+CREATE TABLE StaffCalendar (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    StaffID INT NOT NULL,                    -- Nhân viên thực hiện
+    CalendarDate DATE NOT NULL,              -- Ngày làm việc
+    StartTime TIME NOT NULL,                 -- Giờ bắt đầu
+    EndTime TIME NOT NULL,                   -- Giờ kết thúc
+    TaskType VARCHAR(100),                   -- Loại nhiệm vụ (ví dụ: 'Survey', 'Delivery Support', 'Break')
+    OrderID INT,                             -- Gắn với đơn hàng cụ thể (nếu có)
+    Notes TEXT,                              -- Ghi chú thêm (nếu cần)
+    IsAvailable BOOLEAN DEFAULT TRUE,        -- Nhân viên có rảnh khung giờ này không
+
+    CONSTRAINT fk_staff_calendar_staff FOREIGN KEY (StaffID) REFERENCES Staff(ID),
+    CONSTRAINT fk_staff_calendar_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
+);
+
+
+CREATE TABLE Feedbacks (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Rating INT NOT NULL,  -- điểm đánh giá
+    Description TEXT NOT NULL, -- nội dung đánh giá
+    IsReply BOOLEAN NOT NULL, -- đã được phản hồi chưa
+    CustomerID INT NOT NULL, -- người đánh giá
+    LabelID INT NOT NULL, -- công ty vận chuyển được đánh giá
+    OrderID INT, -- đơn hàng liên quan đến đánh giá (có thể NULL)
+
+    CONSTRAINT fk_feedback_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
+    CONSTRAINT fk_feedback_label FOREIGN KEY (LabelID) REFERENCES Labels(ID),
+    CONSTRAINT fk_feedback_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
+);
+
+
 
 INSERT INTO Roles (RoleName) VALUES 
 ('Customer'),
