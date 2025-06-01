@@ -4,7 +4,7 @@ import swp391.project.DelierySystem.dto.CustomersDTO;
 import java.util.List;
 
 public interface CustomersService {
-    CustomersDTO createCustomers(CustomersDTO customersdto);
+    CustomersDTO createCustomers(CustomersDTO customersDTO);
 
     CustomersDTO getCustomersById(Long CustomersId);
 

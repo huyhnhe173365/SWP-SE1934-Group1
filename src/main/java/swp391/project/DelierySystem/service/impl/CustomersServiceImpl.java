@@ -18,8 +18,8 @@ public class CustomersServiceImpl implements CustomersService{
 
     private CustomerRepository customerRepository;
     @Override
-    public CustomersDTO createCustomers(CustomersDTO customersdto) {
-        Customers customers = CustomerMapper.mapToCustomer(customersdto);
+    public CustomersDTO createCustomers(CustomersDTO customersDTO) {
+        Customers customers = CustomerMapper.mapToCustomer(customersDTO);
         Customers savedCustomers = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersdto(savedCustomers); 
     }
