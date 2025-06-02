@@ -21,5 +21,5 @@ public class CustomersDTO {
     private String passwordHash;
     private Boolean isEmailConfirmed;
     private Boolean isDeleted;
-    private Integer roleId;
+    private Long roleId;  // ← Đổi từ Integer thành Long
 }

@@ -2,6 +2,7 @@ package swp391.project.DeliverySystem.mapper;
 
 import swp391.project.DeliverySystem.dto.CustomersDTO;
 import swp391.project.DeliverySystem.entity.Customers;
+import swp391.project.DeliverySystem.entity.Roles;
 
 public class CustomerMapper {
         public static CustomersDTO mapToCustomersdto(Customers customers) {
@@ -16,22 +17,22 @@ public class CustomerMapper {
                 customers.getPasswordHash(),
                 customers.getIsEmailConfirmed(),
                 customers.getIsDeleted(),
-                customers.getRoleId()
+                customers.getRole() != null ? customers.getRole().getId() : null // Lấy roleId từ entity
             );             
         }
-        public static Customers mapToCustomer(CustomersDTO customersdto) {
+        public static Customers mapToCustomers(CustomersDTO customersDTO, Roles role) {
             return new Customers(
-                customersdto.getId(),
-                customersdto.getFullName(),
-                customersdto.getEmail(),
-                customersdto.getPhoneNumber(),
-                customersdto.getCitizenId(),
-                customersdto.getDateOfBirth(),
-                customersdto.getCustomerType(),
-                customersdto.getPasswordHash(),
-                customersdto.getIsEmailConfirmed(),
-                customersdto.getIsDeleted(),
-                customersdto.getRoleId()
+                customersDTO.getId(),
+                customersDTO.getFullName(),
+                customersDTO.getEmail(),
+                customersDTO.getPhoneNumber(),
+                customersDTO.getCitizenId(),
+                customersDTO.getDateOfBirth(),
+                customersDTO.getCustomerType(),
+                customersDTO.getPasswordHash(),
+                customersDTO.getIsEmailConfirmed(),
+                customersDTO.getIsDeleted(),
+                role
             );
         }
 }

@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import swp391.project.DeliverySystem.dto.CustomersDTO;
 import swp391.project.DeliverySystem.entity.Customers;
+import swp391.project.DeliverySystem.entity.Roles;
 import swp391.project.DeliverySystem.exception.ResourceNotFoundException;
 import swp391.project.DeliverySystem.mapper.CustomerMapper;
 import swp391.project.DeliverySystem.repository.CustomerRepository;
+import swp391.project.DeliverySystem.repository.RolesRepository;
 import swp391.project.DeliverySystem.service.CustomersService;
 
 import java.util.stream.Collectors;
@@ -18,9 +20,10 @@ import java.util.List;
 public class CustomersServiceImpl implements CustomersService{
 
     private CustomerRepository customerRepository;
+    private RolesRepository rolesRepository;
     @Override
     public CustomersDTO createCustomers(CustomersDTO customersDTO) {
-        Customers customers = CustomerMapper.mapToCustomer(customersDTO);
+        Customers customers = CustomerMapper.mapToCustomers(customersDTO, null);
         Customers savedCustomers = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersdto(savedCustomers); 
     }
@@ -50,7 +53,9 @@ public class CustomersServiceImpl implements CustomersService{
             customers.setPasswordHash(updatedCustomers.getPasswordHash());
             customers.setIsEmailConfirmed(updatedCustomers.getIsEmailConfirmed());
             customers.setIsDeleted(updatedCustomers.getIsDeleted());
-            customers.setRoleId(updatedCustomers.getRoleId());
+            Roles role = rolesRepository.findById(updatedCustomers.getRoleId())
+            .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + updatedCustomers.getRoleId()));
+            customers.setRole(role);
             Customers updatedCustomersObj = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersdto(updatedCustomersObj);
     }
