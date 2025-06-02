@@ -1,7 +1,7 @@
-package swp391.project.DelierySystem.mapper;
+package swp391.project.DeliverySystem.mapper;
 
-import swp391.project.DelierySystem.dto.CustomersDTO;
-import swp391.project.DelierySystem.entity.Customers;
+import swp391.project.DeliverySystem.dto.CustomersDTO;
+import swp391.project.DeliverySystem.entity.Customers;
 
 public class CustomerMapper {
         public static CustomersDTO mapToCustomersdto(Customers customers) {

@@ -1,4 +1,4 @@
-package swp391.project.DelierySystem.dto;
+package swp391.project.DeliverySystem.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

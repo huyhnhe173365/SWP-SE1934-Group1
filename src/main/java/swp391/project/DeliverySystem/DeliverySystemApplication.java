@@ -1,13 +1,13 @@
-package swp391.project.DelierySystem;
+package swp391.project.DeliverySystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DelierySystemApplication {
+public class DeliverySystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DelierySystemApplication.class, args);
+		SpringApplication.run(DeliverySystemApplication.class, args);
 	}
 
 }

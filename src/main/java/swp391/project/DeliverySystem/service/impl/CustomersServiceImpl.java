@@ -1,14 +1,15 @@
-package swp391.project.DelierySystem.service.impl;
+package swp391.project.DeliverySystem.service.impl;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-import swp391.project.DelierySystem.dto.CustomersDTO;
-import swp391.project.DelierySystem.entity.Customers;
-import swp391.project.DelierySystem.mapper.CustomerMapper;
-import swp391.project.DelierySystem.repository.CustomerRepository;
-import swp391.project.DelierySystem.service.CustomersService;
-import swp391.project.DelierySystem.exception.ResourceNotFoundException;
+import swp391.project.DeliverySystem.dto.CustomersDTO;
+import swp391.project.DeliverySystem.entity.Customers;
+import swp391.project.DeliverySystem.exception.ResourceNotFoundException;
+import swp391.project.DeliverySystem.mapper.CustomerMapper;
+import swp391.project.DeliverySystem.repository.CustomerRepository;
+import swp391.project.DeliverySystem.service.CustomersService;
+
 import java.util.stream.Collectors;
 import java.util.List;
 

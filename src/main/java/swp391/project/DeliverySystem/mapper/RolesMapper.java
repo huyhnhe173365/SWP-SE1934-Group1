@@ -1,7 +1,7 @@
-package swp391.project.DelierySystem.mapper;
+package swp391.project.DeliverySystem.mapper;
 
-import swp391.project.DelierySystem.dto.RolesDTO;
-import swp391.project.DelierySystem.entity.Roles;
+import swp391.project.DeliverySystem.dto.RolesDTO;
+import swp391.project.DeliverySystem.entity.Roles;
 
 public class RolesMapper {
     public static RolesDTO mapToRolesDTO(Roles roles) {

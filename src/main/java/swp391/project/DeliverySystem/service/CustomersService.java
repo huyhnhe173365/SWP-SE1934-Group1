@@ -1,7 +1,8 @@
-package swp391.project.DelierySystem.service;
+package swp391.project.DeliverySystem.service;
 
-import swp391.project.DelierySystem.dto.CustomersDTO;
 import java.util.List;
+
+import swp391.project.DeliverySystem.dto.CustomersDTO;
 
 public interface CustomersService {
     CustomersDTO createCustomers(CustomersDTO customersDTO);

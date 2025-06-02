@@ -1,7 +1,8 @@
-package swp391.project.DelierySystem.service;
+package swp391.project.DeliverySystem.service;
 
-import swp391.project.DelierySystem.dto.RolesDTO;
 import java.util.List;
+
+import swp391.project.DeliverySystem.dto.RolesDTO;
 
 public interface RolesService {
     RolesDTO createRoles(RolesDTO rolesDTO);

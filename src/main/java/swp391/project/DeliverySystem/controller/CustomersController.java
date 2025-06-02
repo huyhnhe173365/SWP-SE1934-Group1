@@ -1,6 +1,4 @@
-package swp391.project.DelierySystem.controller;
-
-import swp391.project.DelierySystem.dto.CustomersDTO;
+package swp391.project.DeliverySystem.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
-import swp391.project.DelierySystem.service.CustomersService;
+import swp391.project.DeliverySystem.dto.CustomersDTO;
+import swp391.project.DeliverySystem.service.CustomersService;
+
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,15 +24,15 @@ public class CustomersController {
 
     //Build your create APIs here
     @PostMapping
-    private ResponseEntity<CustomersDTO> createCustomers(@RequestBody CustomersDTO customersdto) {
-        CustomersDTO savedCustomers = customersService.createCustomers(customersdto);
+    public ResponseEntity<CustomersDTO> createCustomers(@RequestBody CustomersDTO customersDTO) {
+        CustomersDTO savedCustomers = customersService.createCustomers(customersDTO);
         return new ResponseEntity<>(savedCustomers, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<CustomersDTO> getCustomersById(@PathVariable("id") Long CustomersId) {
-        CustomersDTO customersdto = customersService.getCustomersById(CustomersId);
-        return ResponseEntity.ok(customersdto);
+        CustomersDTO customersDTO = customersService.getCustomersById(CustomersId);
+        return ResponseEntity.ok(customersDTO);
     }
 
     @GetMapping
@@ -43,8 +43,8 @@ public class CustomersController {
 
     @PutMapping("{id}")
     public ResponseEntity<CustomersDTO> updateCustomers(@PathVariable("id") Long CustomersId, @RequestBody CustomersDTO updatedCustomers) {
-        CustomersDTO customersdto = customersService.updateCustomers(CustomersId, updatedCustomers);
-        return ResponseEntity.ok(customersdto);
+        CustomersDTO customersDTO = customersService.updateCustomers(CustomersId, updatedCustomers);
+        return ResponseEntity.ok(customersDTO);
     }
 
     @DeleteMapping("{id}")

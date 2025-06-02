@@ -1,4 +1,4 @@
-package swp391.project.DelierySystem.entity;
+package swp391.project.DeliverySystem.entity;
 
 import java.time.LocalDate;
 import jakarta.persistence.Id;
@@ -54,3 +54,4 @@ public class Customers {
     @Column(name = "RoleID")
     private Integer roleId;
 }
+

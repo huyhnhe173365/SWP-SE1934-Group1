@@ -1,4 +1,4 @@
-package swp391.project.DelierySystem.entity;
+package swp391.project.DeliverySystem.entity;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;

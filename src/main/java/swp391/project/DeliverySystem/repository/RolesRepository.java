@@ -1,7 +1,8 @@
-package swp391.project.DelierySystem.repository;
+package swp391.project.DeliverySystem.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import swp391.project.DelierySystem.entity.Roles;
+
+import swp391.project.DeliverySystem.entity.Roles;
 
 public interface RolesRepository extends JpaRepository<Roles, Long> {
     

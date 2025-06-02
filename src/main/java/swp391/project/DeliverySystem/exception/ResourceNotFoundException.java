@@ -1,4 +1,4 @@
-package swp391.project.DelierySystem.exception;
+package swp391.project.DeliverySystem.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
