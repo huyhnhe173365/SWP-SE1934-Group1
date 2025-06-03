@@ -190,7 +190,7 @@ CREATE TABLE Feedbacks (
     OrderRequestID INT, -- đơn hàng liên quan đến đánh giá (có thể NULL)
 
     CONSTRAINT fk_feedback_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
-    CONSTRAINT fk_feedback_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
+    CONSTRAINT fk_feedback_order FOREIGN KEY (OrderRequestID) REFERENCES OrderRequests(ID)
 );
 
 
@@ -222,20 +222,19 @@ INSERT INTO Storages (StorageName, Address, Capacity, PricePerMonth, ContactInfo
 ('Kho Đà Nẵng', '456 Nguyễn Văn Linh, Đà Nẵng', 800, 4000000, '0922333444 - khodn@example.com', 'Occupied'),
 ('Kho Hồ Chí Minh', '789 Điện Biên Phủ, TP.HCM', 1200, 5500000, '0933444555 - kohcm@example.com', 'Maintenance');
 
-
-INSERT INTO Vouchers (
-    Code, Description, DiscountType, DiscountValue, MinOrderAmount, MaxDiscountAmount, 
-    StartDate, EndDate, UsageLimit, UsageCount, Status
+INSERT INTO Vouchers (Code, Description, Discount, Quantity, StartDate, EndDate, Status
 ) VALUES
-('WELCOME10', 'Giảm 10% cho đơn đầu tiên', 'Percentage', 10.00, 100000, 50000, '2025-01-01', '2025-12-31', 1000, 10, 'Active'),
-('FREESHIP', 'Miễn phí vận chuyển cho đơn trên 200k', 'Fixed', 20000, 200000, 20000, '2025-01-01', '2025-06-30', 500, 100, 'Active'),
-('SUMMER50', 'Giảm 50k cho mùa hè', 'Fixed', 50000, 300000, 50000, '2025-06-01', '2025-08-31', 300, 0, 'Active');
+    ('WELCOME10', 'Giảm 10% cho đơn đầu tiên', 0.10, 1000, '2025-01-01', '2025-12-31', 'Active'),
+    ('FREESHIP',   'Miễn phí vận chuyển cho đơn trên 200k', 0.00, 500, '2025-01-01', '2025-06-30', 'Active'),
+    ('SUMMER50',   'Giảm 50k cho mùa hè',              50000, 300, '2025-06-01', '2025-08-31', 'Active');
+
+
 
 INSERT INTO Staff (
-    FullName, Email, PhoneNumber, Role, AssignedLabelID, AssignedStorageID, Status
+    FullName, Email, PhoneNumber, AssignedLabelID, AssignedStorageID, Status
 ) VALUES
-('Nguyễn Văn A', 'nva.staff@example.com', '0901111222', 'Surveyor', 1, NULL, 'Active'),
-('Trần Thị B', 'ttb.staff@example.com', '0912333444', 'Storage Manager', NULL, 1, 'Active'),
-('Lê Văn C', 'lvc.staff@example.com', '0923444555', 'Logistics', 2, NULL, 'Inactive');
+('Nguyễn Văn A', 'nva.staff@example.com', '0901111222', 1, NULL, 'Active'),
+('Trần Thị B', 'ttb.staff@example.com', '0912333444', NULL, 1, 'Active'),
+('Lê Văn C', 'lvc.staff@example.com', '0923444555', 2, NULL, 'Inactive');
 
 
