@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "CustomerVouchers", uniqueConstraints = @UniqueConstraint(columnNames = {"CustomerID", "VoucherID"}))
-public class CustomerVoucher {
+public class CustomerVouchers {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,3 +33,4 @@ public class CustomerVoucher {
     private Boolean isUsed = false;
     private LocalDateTime usedAt;
 }
+
