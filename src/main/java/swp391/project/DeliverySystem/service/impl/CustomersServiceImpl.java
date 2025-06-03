@@ -25,19 +25,19 @@ public class CustomersServiceImpl implements CustomersService{
     public CustomersDTO createCustomers(CustomersDTO customersDTO) {
         Customers customers = CustomerMapper.mapToCustomers(customersDTO, null);
         Customers savedCustomers = customerRepository.save(customers);
-        return CustomerMapper.mapToCustomersdto(savedCustomers); 
+        return CustomerMapper.mapToCustomersDTO(savedCustomers); 
     }
     @Override
     public CustomersDTO getCustomersById(Long CustomersId) {
         Customers customers = customerRepository.findById(CustomersId)
             .orElseThrow(() -> new ResourceNotFoundException("Customers not found with id: " + CustomersId));
-        return CustomerMapper.mapToCustomersdto(customers);        
+        return CustomerMapper.mapToCustomersDTO(customers);        
     }
     @Override
     public List<CustomersDTO> getAllCustomers() {
         List<Customers> customers = customerRepository.findAll();
         return customers.stream()
-            .map(customer -> CustomerMapper.mapToCustomersdto(customer))
+            .map(customer -> CustomerMapper.mapToCustomersDTO(customer))
             .collect(Collectors.toList());
     }
     @Override
@@ -57,7 +57,7 @@ public class CustomersServiceImpl implements CustomersService{
             .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + updatedCustomers.getRoleId()));
             customers.setRole(role);
             Customers updatedCustomersObj = customerRepository.save(customers);
-        return CustomerMapper.mapToCustomersdto(updatedCustomersObj);
+        return CustomerMapper.mapToCustomersDTO(updatedCustomersObj);
     }
     @Override
     public void deleteCustomers(Long CustomersId) {

@@ -5,7 +5,7 @@ import swp391.project.DeliverySystem.entity.Customers;
 import swp391.project.DeliverySystem.entity.Roles;
 
 public class CustomerMapper {
-        public static CustomersDTO mapToCustomersdto(Customers customers) {
+        public static CustomersDTO mapToCustomersDTO(Customers customers) {
             return new CustomersDTO(
                 customers.getId(),
                 customers.getFullName(),
