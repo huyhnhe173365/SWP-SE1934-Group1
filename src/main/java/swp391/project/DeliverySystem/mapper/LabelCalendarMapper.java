@@ -5,27 +5,27 @@ import swp391.project.DeliverySystem.dto.LabelCalendarDTO;
 import swp391.project.DeliverySystem.entity.Label;
 
 public class LabelCalendarMapper {
-    public static LabelCalendarDTO mapToLabelCalendarDTO(LabelCalendar entity) {
-        if (entity == null) return null;
-        LabelCalendarDTO dto = new LabelCalendarDTO();
-        dto.setId(entity.getId() != null ? entity.getId().intValue() : null);
-        dto.setScheduleDate(entity.getScheduleDate());
-        dto.setPrice(entity.getPrice());
-        dto.setLabel(entity.getLabel());
-        dto.setOrder(entity.getOrder());
-        dto.setIsBooked(entity.getIsBooked());
-        return dto;
+    public static LabelCalendarDTO mapToLabelCalendarDTO(LabelCalendar labelCalendar) {
+        if (labelCalendar == null) return null;
+        LabelCalendarDTO labelCalendarDTO = new LabelCalendarDTO();
+        labelCalendarDTO.setId(labelCalendar.getId() != null ? labelCalendar.getId().intValue() : null);
+        labelCalendarDTO.setScheduleDate(labelCalendar.getScheduleDate());
+        labelCalendarDTO.setPrice(labelCalendar.getPrice());
+        labelCalendarDTO.setLabel(labelCalendar.getLabel());
+        labelCalendarDTO.setOrder(labelCalendar.getOrder());
+        labelCalendarDTO.setIsBooked(labelCalendar.getIsBooked());
+        return labelCalendarDTO;
     }
 
-    public static LabelCalendar mapToLabelCalendar(LabelCalendarDTO dto, Label label) {
-        if (dto == null) return null;
-        LabelCalendar entity = new LabelCalendar();
-        entity.setId(dto.getId() != null ? dto.getId().longValue() : null);
-        entity.setScheduleDate(dto.getScheduleDate());
-        entity.setPrice(dto.getPrice());
-        entity.setLabel(label);
-        entity.setOrder(dto.getOrder());
-        entity.setIsBooked(dto.getIsBooked());
-        return entity;
+    public static LabelCalendar mapToLabelCalendar(LabelCalendarDTO labelCalendarDTO, Label label) {
+        if (label == null) return null;
+        LabelCalendar labelCalendar = new LabelCalendar();
+        labelCalendar.setId(labelCalendarDTO.getId() != null ? labelCalendarDTO.getId().longValue() : null);
+        labelCalendar.setScheduleDate(labelCalendarDTO.getScheduleDate());
+        labelCalendar.setPrice(labelCalendarDTO.getPrice());
+        labelCalendar.setLabel(label);
+        labelCalendar.setOrder(labelCalendarDTO.getOrder());
+        labelCalendar.setIsBooked(labelCalendarDTO.getIsBooked());
+        return labelCalendar;
     }
 }

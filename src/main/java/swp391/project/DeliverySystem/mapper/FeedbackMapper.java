@@ -16,15 +16,15 @@ public class FeedbackMapper {
         );
     }
 
-    public static Feedback mapToFeedback(FeedbackDTO dto) {
-        if (dto == null) return null;
-        Feedback entity = new Feedback();
-        entity.setId(dto.getId() != null ? dto.getId().longValue() : null);
-        entity.setCustomer(dto.getCustomer());
-        entity.setOrderRequest(dto.getOrderRequest());
-        entity.setRating(dto.getRating());
-        entity.setComment(dto.getComment());
-        entity.setFeedbackDate(dto.getFeedbackDate() != null ? java.time.LocalDate.parse(dto.getFeedbackDate()) : null);
-        return entity;
+    public static Feedback mapToFeedback(FeedbackDTO feedbackDTO) {
+        if (feedbackDTO == null) return null;
+        Feedback feedback = new Feedback();
+        feedback.setId(feedbackDTO.getId() != null ? feedbackDTO.getId().longValue() : null);
+        feedback.setCustomer(feedbackDTO.getCustomer());
+        feedback.setOrderRequest(feedbackDTO.getOrderRequest());
+        feedback.setRating(feedbackDTO.getRating());
+        feedback.setComment(feedbackDTO.getComment());
+        feedback.setFeedbackDate(feedbackDTO.getFeedbackDate() != null ? java.time.LocalDate.parse(feedbackDTO.getFeedbackDate()) : null);
+        return feedback;
     }
 }

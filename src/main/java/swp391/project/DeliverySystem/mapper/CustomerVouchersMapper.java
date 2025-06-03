@@ -15,15 +15,15 @@ public class CustomerVouchersMapper {
         );
     }
 
-    public static CustomerVouchers mapToCustomerVouchers(CustomerVouchersDTO dto) {
-        if (dto == null) return null;
-        CustomerVouchers entity = new CustomerVouchers();
-        entity.setId(dto.getId() != null ? dto.getId().longValue() : null);
-        entity.setCustomer(dto.getCustomer());
-        entity.setVoucher(dto.getVouchers());
-        entity.setUsedAt(dto.getUsedAt());
-        entity.setIsUsed(dto.getIsUsed());
-        return entity;
+    public static CustomerVouchers mapToCustomerVouchers(CustomerVouchersDTO customerVouchersDTO) {
+        if (customerVouchersDTO == null) return null;
+        CustomerVouchers customerVouchers = new CustomerVouchers();
+        customerVouchers.setId(customerVouchersDTO.getId() != null ? customerVouchersDTO.getId().longValue() : null);
+        customerVouchers.setCustomer(customerVouchersDTO.getCustomer());
+        customerVouchers.setVoucher(customerVouchersDTO.getVouchers());
+        customerVouchers.setUsedAt(customerVouchersDTO.getUsedAt());
+        customerVouchers.setIsUsed(customerVouchersDTO.getIsUsed());
+        return customerVouchers;
     }
 }
 

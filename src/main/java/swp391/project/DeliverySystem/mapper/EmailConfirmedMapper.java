@@ -13,13 +13,13 @@ public class EmailConfirmedMapper {
             emailConfirmed.getExpirationDate()
         );
     }
-    public static EmailConfirmed mapToEmailConfirmed(EmailComfirmedDTO dto) {
-        if (dto == null) return null;
-        EmailConfirmed entity = new EmailConfirmed();
-        entity.setId(dto.getId() != null ? dto.getId().longValue() : null);
-        entity.setCustomer(dto.getCustomer());
-        entity.setToken(dto.getToken());
-        entity.setExpirationDate(dto.getExpirationDate());
-        return entity;
+    public static EmailConfirmed mapToEmailConfirmed(EmailComfirmedDTO emailComfirmedDTO) {
+        if (emailComfirmedDTO == null) return null;
+        EmailConfirmed emailConfirmed = new EmailConfirmed();
+        emailConfirmed.setId(emailComfirmedDTO.getId() != null ? emailComfirmedDTO.getId().longValue() : null);
+        emailConfirmed.setCustomer(emailComfirmedDTO.getCustomer());
+        emailConfirmed.setToken(emailComfirmedDTO.getToken());
+        emailConfirmed.setExpirationDate(emailComfirmedDTO.getExpirationDate());
+        return emailConfirmed;
     }
 }

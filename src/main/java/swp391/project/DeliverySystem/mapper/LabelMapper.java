@@ -15,14 +15,14 @@ public class LabelMapper {
         );
     }
 
-    public static Label mapToLabel(LabelDTO dto) {
-        if (dto == null) return null;
+    public static Label mapToLabel(LabelDTO labelDTO) {
+        if (labelDTO == null) return null;
         Label label = new Label();
-        label.setId(dto.getId() != null ? dto.getId().longValue() : null);
-        label.setLabelName(dto.getLabelName());
-        label.setDescription(dto.getDescription());
-        label.setContactInfo(dto.getContactInfo());
-        label.setStatus(dto.getStatus());
+        label.setId(labelDTO.getId() != null ? labelDTO.getId().longValue() : null);
+        label.setLabelName(labelDTO.getLabelName());
+        label.setDescription(labelDTO.getDescription());
+        label.setContactInfo(labelDTO.getContactInfo());
+        label.setStatus(labelDTO.getStatus());
         return label;
     }
 }

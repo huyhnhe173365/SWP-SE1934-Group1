@@ -22,18 +22,18 @@ public class IssuesMapper {
         return dto;
     }
 
-    public static Issues mapToIssues(IssuesDTO dto, OrderRequests order, Customers customer) {
-        if (dto == null) return null;
+    public static Issues mapToIssues(IssuesDTO issuesDTO, OrderRequests orderRequests, Customers customer) {
+        if (issuesDTO == null) return null;
         Issues entity = new Issues();
-        entity.setId(dto.getId());
-        entity.setIncidentCode(dto.getIncidentCode());
-        entity.setOrder(order);
+        entity.setId(issuesDTO.getId());
+        entity.setIncidentCode(issuesDTO.getIncidentCode());
+        entity.setOrder(orderRequests);
         entity.setCustomer(customer);
         // Convert LocalDate to LocalDateTime (set time to start of day)
-        entity.setIncidentDate(dto.getIncidentDate() != null ? dto.getIncidentDate().atStartOfDay() : null);
-        entity.setDescription(dto.getDescription());
-        entity.setResolution(dto.getResolution());
-        entity.setStatus(dto.getStatus());
+        entity.setIncidentDate(issuesDTO.getIncidentDate() != null ? issuesDTO.getIncidentDate().atStartOfDay() : null);
+        entity.setDescription(issuesDTO.getDescription());
+        entity.setResolution(issuesDTO.getResolution());
+        entity.setStatus(issuesDTO.getStatus());
         return entity;
     }
 }
