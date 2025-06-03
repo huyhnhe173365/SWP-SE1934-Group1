@@ -1,6 +1,6 @@
 package swp391.project.DeliverySystem.entity;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 
 import jakarta.persistence.*;
 
@@ -14,21 +14,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Vouchers")
-public class Vouchers {
+@Table(name = "Storages")
+public class Storage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String code;
+    private String storageName;
+    private String address;
+    private Integer capacity;
 
-    private String description;
-    private Double discount;
-    private Integer quantity;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal pricePerMonth;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String contactInfo;
     private String status;
 }

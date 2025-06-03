@@ -1,7 +1,5 @@
 package swp391.project.DeliverySystem.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -14,21 +12,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Vouchers")
-public class Vouchers {
+@Table(name = "Labels")
+public class Label {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String code;
+    @Column(name = "LabelName", nullable = false, unique = true)
+    private String labelName;
 
     private String description;
-    private Double discount;
-    private Integer quantity;
-
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String contactInfo;
     private String status;
 }

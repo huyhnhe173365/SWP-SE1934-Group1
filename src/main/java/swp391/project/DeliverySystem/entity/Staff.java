@@ -1,34 +1,39 @@
 package swp391.project.DeliverySystem.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Vouchers")
-public class Vouchers {
+@Table(name = "Staff")
+public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String code;
+    private String fullName;
 
-    private String description;
-    private Double discount;
-    private Integer quantity;
+    @Column(unique = true)
+    private String email;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "AssignedLabelID")
+    private Label assignedLabel;
+
+    @ManyToOne
+    @JoinColumn(name = "AssignedStorageID")
+    private Storage assignedStorage;
+
     private String status;
 }
+
