@@ -183,14 +183,13 @@ CREATE TABLE StaffCalendar (
 CREATE TABLE Feedbacks (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Rating INT NOT NULL,  -- điểm đánh giá
-    Description TEXT NOT NULL, -- nội dung đánh giá
+    Comment TEXT NOT NULL, -- nội dung đánh giá
+    FeedbackDate DATE NOT NULL,
     IsReply BOOLEAN NOT NULL, -- đã được phản hồi chưa
     CustomerID INT NOT NULL, -- người đánh giá
-    LabelID INT NOT NULL, -- công ty vận chuyển được đánh giá
-    OrderID INT, -- đơn hàng liên quan đến đánh giá (có thể NULL)
+    OrderRequestID INT, -- đơn hàng liên quan đến đánh giá (có thể NULL)
 
     CONSTRAINT fk_feedback_customer FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
-    CONSTRAINT fk_feedback_label FOREIGN KEY (LabelID) REFERENCES Labels(ID),
     CONSTRAINT fk_feedback_order FOREIGN KEY (OrderID) REFERENCES OrderRequests(ID)
 );
 
