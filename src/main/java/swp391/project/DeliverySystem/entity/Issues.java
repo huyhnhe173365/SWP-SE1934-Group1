@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,8 +32,9 @@ public class Issues {
     @Column(name = "OrderID")
     private Long orderID;
 
-    @Column(name = "CustomerID")
-    private Long customerID;
+    @ManyToOne
+    @JoinColumn(name = "CustomerID", nullable = false)
+    private Customers customer;
 
     @Column(name = "IncidentDate")
     private LocalDate incidentDate;
