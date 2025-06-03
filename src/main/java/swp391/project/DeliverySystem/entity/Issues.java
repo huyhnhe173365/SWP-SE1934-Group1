@@ -29,8 +29,9 @@ public class Issues {
     @Column(name = "IncidentCode")
     private String incidentCode;
 
-    @Column(name = "OrderID")
-    private Long orderID;
+    @ManyToOne
+    @JoinColumn(name = "OrderID", nullable = false)
+    private OrderRequests orderRequest;
 
     @ManyToOne
     @JoinColumn(name = "CustomerID", nullable = false)

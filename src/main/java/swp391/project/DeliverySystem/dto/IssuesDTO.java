@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import swp391.project.DeliverySystem.entity.Customers;
+import swp391.project.DeliverySystem.entity.OrderRequests;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ import swp391.project.DeliverySystem.entity.Customers;
 public class IssuesDTO {
     public long id;
     private String incidentCode;
-    private Long orderID;
+    private OrderRequests orderRequest;;
     private Customers customer;
     private LocalDate incidentDate;
     private String description;

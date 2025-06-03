@@ -22,7 +22,12 @@ public class Label {
     @Column(name = "LabelName", nullable = false, unique = true)
     private String labelName;
 
+    @Column(name = "Description")
     private String description;
+
+    @Column(name = "ContactInfo")
     private String contactInfo;
+
+    @Column(name = "Status")
     private String status;
 }
