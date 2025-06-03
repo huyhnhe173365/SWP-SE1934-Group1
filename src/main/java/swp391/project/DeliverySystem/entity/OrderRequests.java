@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,28 +30,27 @@ public class OrderRequests {
     @Column(name = "ID")
     private Long id;
 
-    // Khóa ngoại CustomerID
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CustomerID", nullable = false)
     private Customers customer;
 
     @Column(name = "TrackingNumber", unique = true, length = 100)
     private String trackingNumber;
 
-    @Column(name = "LabelID")
-    private Long labelId; 
-    // Nếu muốn mapping sang Entity Labels, thay Long thành Labels và dùng @ManyToOne tương tự.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "LabelID")
+    private Label label;
 
-    @Column(name = "SurveyStaffID")
-    private Long surveyStaffId;
-    // Nếu muốn mapping sang Entity Staffs, thay Long bằng Staffs và dùng @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SurveyStaffID")
+    private Staffs surveyStaff;
 
     @Column(name = "SurveyDate")
-    private LocalDate surveyDate; // DATE
+    private LocalDate surveyDate;
 
-    @Column(name = "StorageID")
-    private Long storageId; 
-    // Nếu muốn mapping sang Entity Storages, thay Long thành Storages
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "StorageID")
+    private Storage storage;
 
     @Column(name = "PickUpLocation", length = 250)
     private String pickUpLocation;
@@ -62,20 +62,20 @@ public class OrderRequests {
     private String transport;
 
     @Column(name = "PickUpDate")
-    private LocalDate pickUpDate; // DATE
+    private LocalDate pickUpDate;
 
     @Column(name = "ExpectedDeliveryTime")
-    private LocalDateTime expectedDeliveryTime; // DATETIME
+    private LocalDateTime expectedDeliveryTime;
 
     @Column(name = "TotalAmount", precision = 10, scale = 2)
-    private BigDecimal totalAmount; // DECIMAL(10,2)
+    private BigDecimal totalAmount;
 
     @Column(name = "Status", nullable = false, length = 100)
     private String status;
 
-    @Column(name = "CreatedAt", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "CreatedAt", updatable = false, insertable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "UpdatedAt", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    @Column(name = "UpdatedAt", insertable = false, updatable = false)
     private LocalDateTime updatedAt;
 }

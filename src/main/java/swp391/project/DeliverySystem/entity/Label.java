@@ -1,7 +1,11 @@
 package swp391.project.DeliverySystem.entity;
 
-import jakarta.persistence.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,17 +21,18 @@ public class Label {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "LabelName", nullable = false, unique = true)
+    @Column(name = "LabelName", nullable = false, unique = true, length = 100)
     private String labelName;
 
-    @Column(name = "Description")
+    @Column(name = "Description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "ContactInfo")
+    @Column(name = "ContactInfo", length = 250)
     private String contactInfo;
 
-    @Column(name = "Status")
+    @Column(name = "Status", length = 100)
     private String status;
 }
