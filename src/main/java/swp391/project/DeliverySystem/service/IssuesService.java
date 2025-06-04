@@ -1,4 +1,4 @@
 package swp391.project.DeliverySystem.service;
 
-public interface Issues {
+public interface IssuesService {
 }
