@@ -16,13 +16,12 @@ public class LabelMapper {
     }
 
     public static Label mapToLabel(LabelDTO labelDTO) {
-        if (labelDTO == null) return null;
-        Label label = new Label();
-        label.setId(labelDTO.getId() != null ? labelDTO.getId().longValue() : null);
-        label.setLabelName(labelDTO.getLabelName());
-        label.setDescription(labelDTO.getDescription());
-        label.setContactInfo(labelDTO.getContactInfo());
-        label.setStatus(labelDTO.getStatus());
-        return label;
+        return new Label(
+            labelDTO.getId() != null ? labelDTO.getId().longValue() : null,
+            labelDTO.getLabelName(),
+            labelDTO.getDescription(),
+            labelDTO.getContactInfo(),
+            labelDTO.getStatus()
+        );
     }
 }

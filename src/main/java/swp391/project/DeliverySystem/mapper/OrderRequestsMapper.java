@@ -27,10 +27,10 @@ public class OrderRequestsMapper {
     }
 
     public static OrderRequests mapToOrderRequests(OrderRequestsDTO orderRequestsDTO,
-                                                   Customers customer,
-                                                   Label label,
-                                                   Staffs surveyStaff,
-                                                   Storage storage) {
+                                                Customers customer,
+                                                Label label,
+                                                Staffs surveyStaff,
+                                                Storage storage) {
         return new OrderRequests(
                 orderRequestsDTO.getId(),
                 customer,
@@ -46,8 +46,8 @@ public class OrderRequestsMapper {
                 orderRequestsDTO.getExpectedDeliveryTime(),
                 orderRequestsDTO.getTotalAmount(),
                 orderRequestsDTO.getStatus(),
-                null,
-                null
+                orderRequestsDTO.getCreatedAt() != null ? orderRequestsDTO.getCreatedAt() : null,
+                orderRequestsDTO.getUpdatedAt() != null ? orderRequestsDTO.getUpdatedAt() : null
         );
     }
 }
