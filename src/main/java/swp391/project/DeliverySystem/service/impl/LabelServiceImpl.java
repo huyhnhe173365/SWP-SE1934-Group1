@@ -57,6 +57,7 @@ public class LabelServiceImpl implements LabelService {
     public void deleteLabelById(Long LabelId) {
         Label label = labelRepository.findById(LabelId)
                 .orElseThrow(() -> new ResourceNotFoundException("Label Not Found with id: "+ LabelId));
+                System.out.println("Deleting label: " + label.getLabelName());
         labelRepository.deleteById(LabelId);
     }
 }
