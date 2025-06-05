@@ -19,17 +19,17 @@ function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/api/Auth/login', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-      console.log('Login successful:', data);
+      console.log('Đăng nhập thành công:', data);
       // TODO: Handle login success (store token, redirect, etc.)
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('Đăng nhập không thành công:', error);
     } finally {
       setLoading(false);
     }
@@ -37,7 +37,7 @@ function Login() {
 
   return (
     <div style={{ maxWidth: '400px', margin: '50px auto' }}>
-      <h2>Login</h2>
+      <h2>Đăng nhập</h2>
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '10px' }}>
           <label>Email:</label><br />
@@ -51,7 +51,7 @@ function Login() {
           />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Password:</label><br />
+          <label>Mật khẩu:</label><br />
           <input
             type="password"
             name="password"

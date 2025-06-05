@@ -53,8 +53,9 @@ function Register() {
       <h2>Đăng ký</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
-          <label>Họ tên:</label><br />
+       <div>
+         <div style={{ marginBottom: '10px' }}>
+          <label style={{display:'flex', justifyContent:'flex-start'}}>Họ tên:</label> <br />
           <input
             type="text"
             name="fullName"
@@ -65,7 +66,7 @@ function Register() {
           />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Email:</label><br />
+          <label style={{display:'flex', justifyContent:'flex-start'}}>Email:</label><br />
           <input
             type="email"
             name="email"
@@ -76,7 +77,7 @@ function Register() {
           />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Số điện thoại:</label><br />
+          <label style={{display:'flex', justifyContent:'flex-start'}}>Số điện thoại:</label><br />
           <input
             type="tel"
             name="phone"
@@ -87,7 +88,7 @@ function Register() {
           />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Mật khẩu:</label><br />
+          <label style={{display:'flex', justifyContent:'flex-start'}}>Mật khẩu:</label><br />
           <input
             type="password"
             name="password"
@@ -98,7 +99,7 @@ function Register() {
           />
         </div>
         <div style={{ marginBottom: '10px' }}>
-          <label>Xác nhận mật khẩu:</label><br />
+          <label style={{display:'flex', justifyContent:'flex-start'}}>Xác nhận mật khẩu:</label><br />
           <input
             type="password"
             name="confirmPassword"
@@ -111,6 +112,7 @@ function Register() {
         <button type="submit" disabled={loading} style={{ padding: '10px 20px' }}>
           {loading ? 'Đang đăng ký...' : 'Đăng ký'}
         </button>
+       </div>
       </form>
     </div>
   );
