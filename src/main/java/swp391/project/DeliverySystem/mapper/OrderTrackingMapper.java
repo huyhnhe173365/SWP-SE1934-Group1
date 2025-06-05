@@ -6,31 +6,31 @@ import swp391.project.DeliverySystem.entity.OrderTracking;
 
 public class OrderTrackingMapper {
 
-    public static OrderTrackingDTO toDTO(OrderTracking entity) {
-        if (entity == null) return null;
+    public static OrderTrackingDTO toDTO(OrderTracking orderTracking) {
+        if (orderTracking == null) return null;
 
         return new OrderTrackingDTO(
-                entity.getId(),
-                entity.getOrder() != null ? entity.getOrder().getId() : null,
-                entity.getTrackingNumber(),
-                entity.getStatus(),
-                entity.getUpdatedAt(),
-                entity.getLocation(),
-                entity.getNotes()
+                orderTracking.getId(),
+                orderTracking.getOrder() != null ? orderTracking.getOrder().getId() : null,
+                orderTracking.getTrackingNumber(),
+                orderTracking.getStatus(),
+                orderTracking.getUpdatedAt(),
+                orderTracking.getLocation(),
+                orderTracking.getNotes()
         );
     }
 
-    public static OrderTracking toEntity(OrderTrackingDTO dto, OrderRequests order) {
-        if (dto == null) return null;
+    public static OrderTracking toEntity(OrderTrackingDTO orderTrackingDTO, OrderRequests orderRequests) {
+                if (orderTrackingDTO == null) return null;
 
-        OrderTracking entity = new OrderTracking();
-        entity.setId(dto.getId());
-        entity.setOrder(order);
-        entity.setTrackingNumber(dto.getTrackingNumber());
-        entity.setStatus(dto.getStatus());
-        entity.setLocation(dto.getLocation());
-        entity.setNotes(dto.getNotes());
-        return entity;
+                OrderTracking orderTracking = new OrderTracking();
+                orderTracking.setId(orderTrackingDTO.getId());
+                orderTracking.setOrder(orderRequests);
+                orderTracking.setTrackingNumber(orderTrackingDTO.getTrackingNumber());
+                orderTracking.setStatus(orderTrackingDTO.getStatus());
+                orderTracking.setLocation(orderTrackingDTO.getLocation());
+                orderTracking.setNotes(orderTrackingDTO.getNotes());
+        return orderTracking;
     }
 }
 
