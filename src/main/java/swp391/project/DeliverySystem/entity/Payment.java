@@ -22,8 +22,8 @@ public class Payment {
     @JoinColumn(name = "CustomerID", nullable = false)
     private Customers customer;
 
-    @Column(name = "Amount", precision = 10, scale = 2, nullable = false)
-    private BigDecimal amount;
+    @Column(name = "TotalAmount", precision = 10, scale = 2, nullable = false)
+    private BigDecimal totalAmount;
 
     @Column(name = "PaymentDate", insertable = false, updatable = false)
     private LocalDateTime paymentDate;

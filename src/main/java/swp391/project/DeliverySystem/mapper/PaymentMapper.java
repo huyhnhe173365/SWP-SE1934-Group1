@@ -9,7 +9,7 @@ public class PaymentMapper {
         return new PaymentDTO(
                 payment.getId(),
                 payment.getCustomer() != null ? payment.getCustomer().getId() : null,
-                payment.getAmount(),
+                payment.getTotalAmount(),
                 payment.getPaymentDate(),
                 payment.getPaymentMethod(),
                 payment.getStatus()
@@ -20,8 +20,8 @@ public class PaymentMapper {
         return new Payment(
                 paymentDTO.getId(),
                 customer,
-                paymentDTO.getAmount(),
-                null,
+                paymentDTO.getTotalAmount(),
+                paymentDTO.getPaymentDate(),
                 paymentDTO.getPaymentMethod(),
                 paymentDTO.getStatus()
         );
