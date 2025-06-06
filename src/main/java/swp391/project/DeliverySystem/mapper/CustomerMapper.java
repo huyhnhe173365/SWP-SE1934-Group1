@@ -17,7 +17,7 @@ public class CustomerMapper {
                 customers.getPasswordHash(),
                 customers.getIsEmailConfirmed(),
                 customers.getIsDeleted(),
-                customers.getRole() != null ? customers.getRole().getId() : null // Lấy roleId từ entity
+                customers.getRole()
             );             
         }
         public static Customers mapToCustomers(CustomersDTO customersDTO, Roles role) {

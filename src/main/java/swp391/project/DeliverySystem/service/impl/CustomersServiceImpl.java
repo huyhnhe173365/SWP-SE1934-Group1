@@ -53,8 +53,8 @@ public class CustomersServiceImpl implements CustomersService{
             customers.setPasswordHash(updatedCustomers.getPasswordHash());
             customers.setIsEmailConfirmed(updatedCustomers.getIsEmailConfirmed());
             customers.setIsDeleted(updatedCustomers.getIsDeleted());
-            Roles role = rolesRepository.findById(updatedCustomers.getRoleId())
-            .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + updatedCustomers.getRoleId()));
+            Roles role = rolesRepository.findById(updatedCustomers.getRole().getId())
+            .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + updatedCustomers.getRole().getId())); 
             customers.setRole(role);
             Customers updatedCustomersObj = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersDTO(updatedCustomersObj);
