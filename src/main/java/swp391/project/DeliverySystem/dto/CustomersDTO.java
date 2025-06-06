@@ -1,5 +1,6 @@
 package swp391.project.DeliverySystem.dto;
 
+import swp391.project.DeliverySystem.entity.Roles;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,5 +22,5 @@ public class CustomersDTO {
     private String passwordHash;
     private Boolean isEmailConfirmed;
     private Boolean isDeleted;
-    private Long roleId;  // ← Đổi từ Integer thành Long
+    private Roles role;  // ← Đổi từ Integer thành Long
 }
