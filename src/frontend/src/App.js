@@ -24,7 +24,7 @@ function MainLayout() {
         <Route path="/business" element={<Business />} />
         <Route path="/personal" element={<Personal />} />
         <Route path="/login" element={<Login />} />
-       < Route path="/register" element={<Register />} />
+        < Route path="/register" element={<Register />} />
         {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
       {!shouldHideLayout && <Footer />}
