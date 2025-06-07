@@ -24,9 +24,7 @@ public class Roles {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "Name", nullable = false, length = 50)
-    private String name;
+    @Column(name = "RoleName", nullable = false, length = 50)
+    private String roleName;
 
-    @Column(name = "Description", length = 200)
-    private String description;
 }

@@ -39,7 +39,7 @@ public class CustomersServiceImpl implements CustomersService {
         response.put("id", customer.getId());
         response.put("fullName", customer.getFullName());
         response.put("email", customer.getEmail());
-        response.put("role", customer.getRole().getName());
+        response.put("role", customer.getRole().getRoleName());
         
         return response;
     }
