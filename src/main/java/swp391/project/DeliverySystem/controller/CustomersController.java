@@ -2,25 +2,33 @@ package swp391.project.DeliverySystem.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import lombok.AllArgsConstructor;
 import swp391.project.DeliverySystem.dto.CustomersDTO;
+import swp391.project.DeliverySystem.dto.LoginDTO;
 import swp391.project.DeliverySystem.service.CustomersService;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/customers")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CustomersController {
     private CustomersService customersService;
+
+    @PostMapping("/register")
+    public ResponseEntity<CustomersDTO> register(@RequestBody CustomersDTO customersDTO) {
+        CustomersDTO savedCustomers = customersService.createCustomers(customersDTO);
+        return new ResponseEntity<>(savedCustomers, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
+        Map<String, Object> response = customersService.login(loginDTO);
+        return ResponseEntity.ok(response);
+    }
 
     //Build your create APIs here
     @PostMapping
