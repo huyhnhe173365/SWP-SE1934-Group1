@@ -1,57 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
-function App() {
-  const [user, setUser] = useState(null);
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+import Landing from './pages/Home/Landing';
+import Business from './pages/Business/business';
+import Personal from './pages/Personal/Personal';
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
+// import Register from './components/register';
 
-  useEffect(() => {
-    // Check if user is logged in on component mount
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  const handleLoginSuccess = (userData) => {
-    setUser(userData);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-  };
+function MainLayout() {
+  const location = useLocation();
+  const hideLayoutPaths = ['/login', '/register', '/logout'];
+  const shouldHideLayout = hideLayoutPaths.includes(location.pathname);
 
   return (
-    <Router>
-      <div className="App">
-        <nav className="navbar">
-          <div className="nav-brand">
-            <Link to="/">Delivery System</Link>
-          </div>
-          <div className="nav-links">
-            {user ? (
-              <>
-                <span className="welcome-message">Welcome, {user.fullName}</span>
-                <button onClick={handleLogout} className="logout-button">Logout</button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="nav-link">Login</Link>
-                <Link to="/register" className="nav-link">Register</Link>
-              </>
-            )}
-          </div>
-        </nav>
+    <>
+      {!shouldHideLayout && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/landing" element={<Landing />} />
+        <Route path="/business" element={<Business />} />
+        <Route path="/personal" element={<Personal />} />
+        <Route path="/login" element={<Login />} />
+       < Route path="/register" element={<Register />} />
+        {/* <Route path="/register" element={<Register />} /> */}
+      </Routes>
+      {!shouldHideLayout && <Footer />}
+    </>
+  );
+}
 
-        <Routes>
-          <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<div className="home-content">Welcome to Delivery System</div>} />
-        </Routes>
-      </div>
+function App() {
+  return (
+    <Router>
+      <MainLayout />
     </Router>
   );
 }

@@ -1,9 +1,9 @@
 package swp391.project.DeliverySystem.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import swp391.project.DeliverySystem.entity.Customers;
-import java.util.Optional;
 
-public interface CustomerRepository extends JpaRepository<Customers, Long> {
-    Optional<Customers> findByEmailOrPhoneNumber(String email, String phoneNumber);
+import swp391.project.DeliverySystem.entity.Customers;
+
+public interface CustomerRepository extends JpaRepository<Customers, Long>{
+    
 }
