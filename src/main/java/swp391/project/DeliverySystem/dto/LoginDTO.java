@@ -10,6 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginDTO {
-    private String email;
+    private String identifier; // Có thể là email hoặc số điện thoại
     private String password;
 } 

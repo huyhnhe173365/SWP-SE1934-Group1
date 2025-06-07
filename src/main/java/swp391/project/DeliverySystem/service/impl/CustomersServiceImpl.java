@@ -27,22 +27,23 @@ public class CustomersServiceImpl implements CustomersService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public Map<String, Object> login(LoginDTO loginDTO) {
-        Customers customer = customerRepository.findByEmail(loginDTO.getEmail())
-            .orElseThrow(() -> new ResourceNotFoundException("Invalid email or password"));
+        public Map<String, Object> login(LoginDTO loginDTO) {
+            Customers customer = customerRepository.findByEmailOrPhoneNumber(loginDTO.getIdentifier(), loginDTO.getIdentifier())
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid email/phone number or password"));
 
-        if (!passwordEncoder.matches(loginDTO.getPassword(), customer.getPasswordHash())) {
-            throw new ResourceNotFoundException("Invalid email or password");
+            if (!passwordEncoder.matches(loginDTO.getPassword(), customer.getPasswordHash())) {
+                throw new ResourceNotFoundException("Invalid email/phone number or password");
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("id", customer.getId());
+            response.put("fullName", customer.getFullName());
+            response.put("email", customer.getEmail());
+            response.put("phoneNumber", customer.getPhoneNumber());
+            response.put("role", customer.getRole().getRoleName());
+            
+            return response;
         }
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("id", customer.getId());
-        response.put("fullName", customer.getFullName());
-        response.put("email", customer.getEmail());
-        response.put("role", customer.getRole().getRoleName());
-        
-        return response;
-    }
 
     @Override
     public CustomersDTO createCustomers(CustomersDTO customersDTO) {

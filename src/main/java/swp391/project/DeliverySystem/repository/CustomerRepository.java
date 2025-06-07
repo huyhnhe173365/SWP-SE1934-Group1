@@ -5,5 +5,5 @@ import swp391.project.DeliverySystem.entity.Customers;
 import java.util.Optional;
 
 public interface CustomerRepository extends JpaRepository<Customers, Long> {
-    Optional<Customers> findByEmail(String email);
+    Optional<Customers> findByEmailOrPhoneNumber(String email, String phoneNumber);
 }
