@@ -23,7 +23,7 @@ public class CustomersController {
     private CustomersService customersService;
 
     //Build your create APIs here
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<CustomersDTO> createCustomers(@RequestBody CustomersDTO customersDTO) {
         CustomersDTO savedCustomers = customersService.createCustomers(customersDTO);
         return new ResponseEntity<>(savedCustomers, HttpStatus.CREATED);

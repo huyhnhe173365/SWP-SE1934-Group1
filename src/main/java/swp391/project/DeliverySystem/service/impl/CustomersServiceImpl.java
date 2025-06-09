@@ -12,6 +12,7 @@ import swp391.project.DeliverySystem.repository.CustomerRepository;
 import swp391.project.DeliverySystem.repository.RolesRepository;
 import swp391.project.DeliverySystem.service.CustomersService;
 
+import javax.management.relation.Role;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -23,7 +24,10 @@ public class CustomersServiceImpl implements CustomersService{
     private RolesRepository rolesRepository;
     @Override
     public CustomersDTO createCustomers(CustomersDTO customersDTO) {
-        Customers customers = CustomerMapper.mapToCustomers(customersDTO, null);
+        Roles defaultRole = (Roles) rolesRepository.findByRoleName("CUSTOMER")
+                .orElseThrow(() -> new RuntimeException("Default role CUSTOMER not found"));
+
+        Customers customers = CustomerMapper.mapToCustomers(customersDTO, defaultRole);
         Customers savedCustomers = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersDTO(savedCustomers); 
     }
