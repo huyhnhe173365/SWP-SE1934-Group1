@@ -36,8 +36,8 @@ public class Customers {
     @Column(name = "PhoneNumber", length = 10)
     private String phoneNumber;
 
-    @Column(name = "CitizenID")
-    private Integer citizenId; // INT NULL
+    @Column(name = "CitizenID", length = 50)
+    private String citizenId; // INT NULL
 
     @Column(name = "DateOfBirth")
     private LocalDate dateOfBirth; // DATE NULL

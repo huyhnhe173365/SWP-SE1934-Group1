@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import swp391.project.DeliverySystem.dto.CustomersDTO;
@@ -23,7 +24,7 @@ public class CustomersController {
     private CustomersService customersService;
 
     //Build your create APIs here
-    @PostMapping("/register")
+    @PostMapping
     public ResponseEntity<CustomersDTO> createCustomers(@RequestBody CustomersDTO customersDTO) {
         CustomersDTO savedCustomers = customersService.createCustomers(customersDTO);
         return new ResponseEntity<>(savedCustomers, HttpStatus.CREATED);
@@ -52,4 +53,13 @@ public class CustomersController {
         customersService.deleteCustomers(CustomersId);
         return ResponseEntity.ok("Customers deleted successfully");
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<CustomersDTO> registerCustomers(
+            @RequestBody CustomersDTO customersDTO,
+            @RequestParam String confirmedPassword) {
+        CustomersDTO registeredCustomers = customersService.registerCustomers(customersDTO, confirmedPassword);
+        return new ResponseEntity<>(registeredCustomers, HttpStatus.CREATED);
+    }
+
 }

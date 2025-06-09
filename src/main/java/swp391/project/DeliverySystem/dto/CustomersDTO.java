@@ -16,7 +16,7 @@ public class CustomersDTO {
     private String fullName;
     private String email;
     private String phoneNumber;
-    private Integer citizenId;
+    private String citizenId;
     private LocalDate dateOfBirth;
     private String customerType;
     private String passwordHash;
