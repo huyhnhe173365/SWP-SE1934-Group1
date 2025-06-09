@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/labels")
-public class LabelComtroller {
+public class LabelController {
     private LabelService labelService;
     
     @PostMapping
