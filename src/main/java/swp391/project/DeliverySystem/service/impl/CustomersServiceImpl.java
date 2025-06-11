@@ -26,7 +26,7 @@ public class CustomersServiceImpl implements CustomersService{
     public CustomersDTO createCustomers(CustomersDTO customersDTO) {
         Roles defaultRole = (Roles) rolesRepository.findByRoleName("CUSTOMER")
                 .orElseThrow(() -> new RuntimeException("Default role CUSTOMER not found"));
-
+        customersDTO.setId(null); // Ensure ID is null for new entity
         Customers customers = CustomerMapper.mapToCustomers(customersDTO, defaultRole);
         Customers savedCustomers = customerRepository.save(customers);
         return CustomerMapper.mapToCustomersDTO(savedCustomers); 
