@@ -70,36 +70,4 @@ public class CustomersServiceImpl implements CustomersService{
         customers.setIsDeleted(true);
         customerRepository.deleteById(CustomersId);
     }
-    @Override
-    public CustomersDTO registerCustomers(CustomersDTO customersDTO, String confirmedPassword) {
-        // Validate required fields
-        if (customersDTO.getPhoneNumber() == null || customersDTO.getPhoneNumber().isEmpty()) {
-            throw new IllegalArgumentException("Phone number is required");
-        }
-        if (customersDTO.getPasswordHash() == null || customersDTO.getPasswordHash().isEmpty()) {
-            throw new IllegalArgumentException("Password is required");
-        }
-        if (confirmedPassword == null || confirmedPassword.isEmpty()) {
-            throw new IllegalArgumentException("Confirmed password is required");
-        }
-        if (!customersDTO.getPasswordHash().equals(confirmedPassword)) {
-            throw new IllegalArgumentException("Passwords do not match");
-        }
-
-        // Set default values for other fields
-        customersDTO.setFullName("Default Name");
-        customersDTO.setIsEmailConfirmed(false);
-        customersDTO.setIsDeleted(false);
-
-        // Assign default role
-        Roles defaultRole = (Roles) rolesRepository.findByRoleName("CUSTOMER")
-                .orElseThrow(() -> new RuntimeException("Default role CUSTOMER not found"));
-
-        // Map DTO to entity and save
-        Customers customers = CustomerMapper.mapToCustomers(customersDTO, defaultRole);
-        Customers savedCustomers = customerRepository.save(customers);
-
-        // Map saved entity back to DTO and return
-        return CustomerMapper.mapToCustomersDTO(savedCustomers);
-    }
 }

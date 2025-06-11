@@ -15,5 +15,4 @@ public interface CustomersService {
 
     void deleteCustomers(Long CustomersId);
 
-    CustomersDTO registerCustomers(CustomersDTO customersDTO, String confirmedPassword);
 }
