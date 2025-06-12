@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:replace="fragments/layout :: layout(~{::content}, 'Lalamove Cá nhân', 'Giao hàng nhanh chóng cho cá nhân')">
+        <div th:fragment="content">
+            <section class="individual-hero">
+                <div class="container">
+                    <h1>Giao hàng cá nhân</h1>
+                    <p>Đặt xe giao hàng nhanh chóng, tiện lợi</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

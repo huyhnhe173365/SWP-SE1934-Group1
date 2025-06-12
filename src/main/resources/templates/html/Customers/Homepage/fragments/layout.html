@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} ?: 'Lalamove - Giao hàng siêu tốc'"></title>
+    <meta name="description" th:content="${pageDescription} ?: 'Nền tảng giao hàng theo yêu cầu hàng đầu tại Việt Nam'">
+    <link rel="stylesheet" th:href="@{/templates/css/homepage.css}">
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" th:content="${pageTitle} ?: 'Lalamove - Giao hàng siêu tốc'">
+    <meta property="og:description" th:content="${pageDescription} ?: 'Nền tảng giao hàng theo yêu cầu hàng đầu tại Việt Nam'">
+    <meta property="og:image" th:content="@{/images/og-image.jpg}">
+    <meta property="og:url" th:content="${pageUrl}">
+    
+    <!-- Additional CSS -->
+    <th:block th:fragment="css"></th:block>
+</head>
+<body th:fragment="layout (content, pageTitle, pageDescription)">
+    <!-- Header -->
+    <div th:replace="fragments/header :: header"></div>
+    
+    <!-- Main Content -->
+    <main th:replace="${content}"></main>
+    
+    <!-- Footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+    
+    <!-- Scripts -->
+    <script th:src="@{/js/script.js}"></script>
+    
+    <!-- Additional JS -->
+    <th:block th:fragment="scripts"></th:block>
+</body>
+</html>

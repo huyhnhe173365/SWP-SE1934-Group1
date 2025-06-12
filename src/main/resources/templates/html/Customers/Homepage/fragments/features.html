@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- Features Section Fragment -->
+    <section class="features" th:fragment="features">
+        <div class="container">
+            <div class="features-content">
+                <div class="features-left">
+                    <h2>Tại sao chọn FastMove?</h2>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <circle cx="15" cy="15" r="12" fill="#667eea"/>
+                                    <path d="M10 15L13 18L20 11" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Đặt hàng siêu nhanh</h4>
+                                <p>Chỉ cần 3 bước đơn giản để đặt xe giao hàng</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <circle cx="15" cy="15" r="12" fill="#764ba2"/>
+                                    <path d="M15 8V15L20 18" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Theo dõi thời gian thực</h4>
+                                <p>Biết chính xác vị trí tài xế và thời gian giao hàng</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                                    <circle cx="15" cy="15" r="12" fill="#f093fb"/>
+                                    <path d="M12 15L15 18L18 12" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="feature-content">
+                                <h4>Giá cả minh bạch</h4>
+                                <p>Không phí ẩn, biết trước chi phí trước khi đặt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="features-right">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="app-interface">
+                                <div class="app-header">
+                                    <div class="app-title">FastMove</div>
+                                    <div class="app-status">Đang giao hàng</div>
+                                </div>
+                                <div class="map-area"></div>
+                                <div class="delivery-info">
+                                    <div class="driver-info">
+                                        <div class="driver-avatar"></div>
+                                        <div class="driver-details">
+                                            <div class="driver-name">Nguyễn Văn A</div>
+                                            <div class="driver-rating">⭐ 4.9</div>
+                                        </div>
+                                    </div>
+                                    <div class="eta">Còn 5 phút</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

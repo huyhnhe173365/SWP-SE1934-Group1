@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div th:replace="fragments/layout :: layout(~{::content}, 'Lalamove Doanh nghiệp', 'Giải pháp giao hàng cho doanh nghiệp')">
+        <div th:fragment="content">
+            <section class="business-hero">
+                <div class="container">
+                    <h1>Giải pháp giao hàng cho doanh nghiệp</h1>
+                    <p>Tối ưu hóa quy trình giao hàng của bạn với Lalamove Business</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastMove - Nền tảng giao hàng thông minh</title>
+    <link rel="stylesheet" th:href="@{/css/homepage.css}">
+</head>
+<body>
+<!-- Header Fragment -->
+<div th:replace="Customers/Homepage/fragments/header :: header"></div>
+
+<!-- Hero Fragment -->
+<div th:replace="Customers/Homepage/fragments/hero :: hero"></div>
+
+<!-- Stats Fragment -->
+<div th:replace="Customers/Homepage/fragments/stats :: stats"></div>
+
+<!-- Services Fragment -->
+<div th:replace="Customers/Homepage/fragments/services :: services"></div>
+
+<!-- Features Fragment -->
+<div th:replace="Customers/Homepage/fragments/features :: features"></div>
+
+<!-- Testimonials Fragment -->
+<div th:replace="Customers/Homepage/fragments/testimonials :: testimonials"></div>
+
+<!-- CTA Fragment -->
+<div th:replace="Customers/Homepage/fragments/cta :: cta"></div>
+
+<!-- Footer Fragment -->
+<div th:replace="Customers/Homepage/fragments/footer :: footer"></div>
+
+<script th:src="@{/js/homepage.js}"></script>
+</body>
+</html>

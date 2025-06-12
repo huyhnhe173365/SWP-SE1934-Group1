@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- Hero Section Fragment -->
+    <section class="hero" th:fragment="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <span>🚀 Nền tảng giao hàng #1 Việt Nam</span>
+                    </div>
+                    <h1>Giao hàng thông minh, <span class="highlight">nhanh như chớp</span></h1>
+                    <p>Kết nối bạn với hàng nghìn tài xế chuyên nghiệp. Đặt hàng trong 10 giây, nhận hàng trong 15 phút.</p>
+                    
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <span>Giao hàng tức thì</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">📱</div>
+                            <span>Theo dõi real-time</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💰</div>
+                            <span>Giá cả minh bạch</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-right">
+                    <div class="booking-card">
+                        <h3>Đặt xe ngay</h3>
+                        <form class="booking-form">
+                            <div class="form-group">
+                                <label>Điểm đón</label>
+                                <input type="text" placeholder="Nhập địa chỉ đón hàng" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Điểm đến</label>
+                                <input type="text" placeholder="Nhập địa chỉ giao hàng" class="form-input">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Loại xe</label>
+                                    <select class="form-select">
+                                        <option>Xe máy</option>
+                                        <option>Xe tải nhỏ</option>
+                                        <option>Xe tải lớn</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Thời gian</label>
+                                    <select class="form-select">
+                                        <option>Ngay bây giờ</option>
+                                        <option>Đặt lịch</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-book">Tính giá & Đặt xe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-decoration">
+            <div class="floating-element element-1"></div>
+            <div class="floating-element element-2"></div>
+            <div class="floating-element element-3"></div>
+        </div>
+    </section>
+</body>
+</html>
